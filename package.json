@@ -1,0 +1,29 @@
+{
+  "name": "workout-tracker-nosql",
+  "version": "1.0.0",
+  "description": "Create a workout tracker.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeders/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RFlanagan82/workout-tracker-nosql.git"
+  },
+  "keywords": [],
+  "author": "Ryan Flanagan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RFlanagan82/workout-tracker-nosql/issues"
+  },
+  "homepage": "https://github.com/RFlanagan82/workout-tracker-nosql#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6"
+  }
+}
