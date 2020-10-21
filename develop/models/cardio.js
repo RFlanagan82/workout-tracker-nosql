@@ -11,7 +11,7 @@ const CardioSchema = new Schema ({
         type: Number,
         required: true
     },
-    duration: {
+    duration_mins: {
         type: Number,
         required: true
     },
