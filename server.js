@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ****Bring in model files here:*****
-// const exercisePlan = require("./models")
+//const exercisePlanDB = require("./models/index.js")
 
 // ****Bring in controller files here:*****
 // const cardioController = require("./controllers/cardioController");
@@ -20,7 +20,7 @@ app.use(express.static("public"));
 
 // Mongoose Middleware
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/exercisePlan",
+    process.env.MONGODB_URI || "mongodb://localhost/exercisePlanDB",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -47,8 +47,8 @@ app.get("/api/config", (req, res) => {
 
 app.post("/submit", ({ body }, res) => {
     exercisePlan.create(body)
-      .then(dbexercisePlan => {
-        res.json(dbexercisePlan);
+      .then(exercisePlanDB => {
+        res.json(exercisePlanDB);
       })
       .catch(err => {
         res.json(err);
