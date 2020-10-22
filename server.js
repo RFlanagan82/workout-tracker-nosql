@@ -1,4 +1,4 @@
-
+require("dotenv").config()
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
@@ -40,30 +40,8 @@ mongoose.connect(
 //   console.log("Mongoose connection error: ", err);
 // });
 
-app.get("/api/config", (req, res) => {
-  res.json({
-    success: true,
-  });
-});
-
-app.post("/submit", ({ body }, res) => {
-    exercisePlan.create(body)
-      .then(db => {
-        res.json(db);
-      })
-      .catch(err => {
-        res.json(err);
-      });
-  });
-
-
-  app.get("/exercise", (req,res) =>{
-      console.log(__dirname),
-      res.sendFile(path.join(__dirname, "./public/exercise.html"))
-  });
-
-
-
+require("./routes/apiroutes")(app);
+require("./routes/htmlroutes")(app);
 
 // APP Listener
 app.listen(PORT, () => {
