@@ -1,22 +1,21 @@
-const { response } = require("express");
+
 const express = require("express");
+const logger = require("morgan");
 const mongoose = require("mongoose");
-const app = express();
 const path = require("path");
+
+const app = express();
 
 // Set up localhost server
 const PORT = process.env.PORT || 3000;
 
 // ****Bring in model files here:*****
-const exercisePlanDB = require("./models/index")
-
-// ****Bring in controller files here:*****
-// const cardioController = require("./controllers/cardioController");
-// const resistanceController = require("./controllers/resistanceController");
+const db = require("./models")
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(logger("dev"));
 
 app.use(express.static("public"));
 
