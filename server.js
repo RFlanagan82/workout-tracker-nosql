@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ****Bring in model files here:*****
-//const exercisePlanDB = require("./models/index.js")
+const exercisePlanDB = require("./develop/models/index")
 
 // ****Bring in controller files here:*****
 // const cardioController = require("./controllers/cardioController");
@@ -39,21 +39,21 @@ connection.on("error", (err) => {
   console.log("Mongoose connection error: ", err);
 });
 
-app.get("/api/config", (req, res) => {
-  res.json({
-    success: true,
-  });
-});
+// app.get("/api/config", (req, res) => {
+//   res.json({
+//     success: true,
+//   });
+// });
 
-app.post("/submit", ({ body }, res) => {
-    exercisePlan.create(body)
-      .then(exercisePlanDB => {
-        res.json(exercisePlanDB);
-      })
-      .catch(err => {
-        res.json(err);
-      });
-  });
+// app.post("/submit", ({ body }, res) => {
+//     exercisePlan.create(body)
+//       .then(exercisePlanDB => {
+//         res.json(exercisePlanDB);
+//       })
+//       .catch(err => {
+//         res.json(err);
+//       });
+//   });
 
 
 // *****Use the Controller Files ****
@@ -65,3 +65,4 @@ app.post("/submit", ({ body }, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
   });
+
