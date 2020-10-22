@@ -10,18 +10,18 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ****Bring in model files here:*****
-const db = require("./models")
+const db = require("./models");
 
+app.use(logger("dev"));
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(logger("dev"));
 
 app.use(express.static("public"));
 
 // Mongoose Middleware
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/exercisePlanDB",
+    process.env.MONGODB_URI || "mongodb://localhost/workout",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -30,15 +30,15 @@ mongoose.connect(
     }
   );
 
-const connection = mongoose.connection;
+// const connection = mongoose.connection;
 
-connection.on("connected", () => {
-  console.log("Mongoose successfully connected.");
-});
+// connection.on("connected", () => {
+//   console.log("Mongoose successfully connected.");
+// });
 
-connection.on("error", (err) => {
-  console.log("Mongoose connection error: ", err);
-});
+// connection.on("error", (err) => {
+//   console.log("Mongoose connection error: ", err);
+// });
 
 app.get("/api/config", (req, res) => {
   res.json({
@@ -48,8 +48,8 @@ app.get("/api/config", (req, res) => {
 
 app.post("/submit", ({ body }, res) => {
     exercisePlan.create(body)
-      .then(exercisePlanDB => {
-        res.json(exercisePlanDB);
+      .then(db => {
+        res.json(db);
       })
       .catch(err => {
         res.json(err);
@@ -62,9 +62,7 @@ app.post("/submit", ({ body }, res) => {
       res.sendFile(path.join(__dirname, "./public/exercise.html"))
   });
 
-// *****Use the Controller Files ****
-// app.use(cardioController);
-// app.use(resistanceController);
+
 
 
 // APP Listener
