@@ -1,6 +1,8 @@
+const { response } = require("express");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const path = require("path");
 
 // Set up localhost server
 const PORT = process.env.PORT || 3000;
@@ -39,22 +41,27 @@ connection.on("error", (err) => {
   console.log("Mongoose connection error: ", err);
 });
 
-// app.get("/api/config", (req, res) => {
-//   res.json({
-//     success: true,
-//   });
-// });
+app.get("/api/config", (req, res) => {
+  res.json({
+    success: true,
+  });
+});
 
-// app.post("/submit", ({ body }, res) => {
-//     exercisePlan.create(body)
-//       .then(exercisePlanDB => {
-//         res.json(exercisePlanDB);
-//       })
-//       .catch(err => {
-//         res.json(err);
-//       });
-//   });
+app.post("/submit", ({ body }, res) => {
+    exercisePlan.create(body)
+      .then(exercisePlanDB => {
+        res.json(exercisePlanDB);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
 
+
+  app.get("/exercise", (req,res) =>{
+      console.log(__dirname),
+      res.sendFile(path.join(__dirname, "./develop/public/exercise.html"))
+  });
 
 // *****Use the Controller Files ****
 // app.use(cardioController);
