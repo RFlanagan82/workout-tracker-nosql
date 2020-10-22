@@ -8,7 +8,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3000;
 
 // ****Bring in model files here:*****
-const exercisePlanDB = require("./develop/models/index")
+const exercisePlanDB = require("./models/index")
 
 // ****Bring in controller files here:*****
 // const cardioController = require("./controllers/cardioController");
@@ -60,7 +60,7 @@ app.post("/submit", ({ body }, res) => {
 
   app.get("/exercise", (req,res) =>{
       console.log(__dirname),
-      res.sendFile(path.join(__dirname, "./develop/public/exercise.html"))
+      res.sendFile(path.join(__dirname, "./public/exercise.html"))
   });
 
 // *****Use the Controller Files ****
