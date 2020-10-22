@@ -18,16 +18,19 @@ module.exports = function(app) {
         });
     });
 
-    // app.get("/api/workouts/range", (req,res) => {
-    //     db.Workout.find({})
-
-    // });
+    app.get("/api/workouts/range", (req,res) => {
+        db.Workout.find({})
+        .then(exercises=>{
+        res.json(exercises)
+        }).catch((err) => {
+            console.log(err)
+        });
+    });
 
     app.put("/api/workouts/:id", (req, res) => {
-        db.Workout.findOneAndUpdate({
-            id: req.params.id
-        }, 
-        {$push: {workouts:req.body}}
+        db.Workout.findOneAndUpdate( 
+            {_id: req.params.id}, 
+        {$push: {exercises:req.body}}
         ).then((workout) => {
             res.json(workout);
         }).catch((err) => {
