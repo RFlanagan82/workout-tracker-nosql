@@ -18,6 +18,16 @@ module.exports = function(app) {
         });
     });
 
+    app.post("/api/workouts", ({ body }, res) => {
+        db.Workout.create(body)
+        .then(db => {
+            res.json(db);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    });
+
     app.get("/api/workouts/range", (req,res) => {
         db.Workout.find({})
         .then(exercises=>{
@@ -39,16 +49,7 @@ module.exports = function(app) {
     });
 
 
-    app.post("/api/workouts", ({ body }, res) => {
-        db.Workout.create(body)
-        .then(db => {
-            res.json(db);
-        })
-        .catch(err => {
-            console.log(err);
-        });
-    });
-
+ 
 
 
 }
